@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" class="full-height">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>StayCO</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="./assets/css/animate.css">
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <link rel="shortcut icon" type="image/png" href="./assets/images/favicon.png">
+
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- ensures optimum performance on mobile devices-->
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js" type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="animated fadeIn jumbo text-center pb-2" style="animation-delay: 1.5s;">
+
+            <h1 class="title text-center animated bounceInUp" style="animation-delay: 1.5s;">StayCO</h1>
+            <p class="tag-line text-center"> Embracing Colorado Weather One Day at a Time</p>
+            <img class="stayCoImg animated bounceInDown" style="animation-delay: 1.5s;" src="./assets/images/bluTxt-StayCO.jpg" alt="stayCO Logo">
+
+            <!-- <hr class="my-4"> -->
+            <h4 class="mt-3"> Compare weather forecast of popular Colorado travel destinations so you can plan your trip</h4>
+
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col"></div>
+                    <div class="col-6">
+                        <br>
+                        <form method="get" class="lead text-left" id="hotspots">
+                            Colorado Hotspots for you to choose from:
+                            <div class="Options">
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="Aspen" value="Aspen"> Aspen
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="Boulder" value="Boulder"> Boulder
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="Breckenridge" value="Breckenridge"> Breckenridge
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="Denver" value="Denver"> Denver
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="Dillon" value="Dillon"> Dillon
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="Durango" value="Durango"> Durango
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="EstesPark" value="Estes+Park"> Estes Park
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="Golden" value="Golden"> Golden
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" data-idName="grandJunction" value="Grand+Junction"> Grand Junction
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" name="Pueblo" value="Pueblo"> Pueblo
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" name="Steamboat" value="Steamboat"> Steamboat
+                                    </div>
+                                    <div class="col-lg">
+                                        <input type="checkbox" class="locationBtn" name="Vail" value="Vail"> Vail
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                        <!-- POTENTAIL FOR THE FUTURE  -->
+                        <!-- <br> 
+                        <form method="get" class="lead text-left" id="search">
+                            Search for another city:
+                            <div class="Options text-center">
+                                <div class="row">
+                                    <div class="col text-right">
+                                        <label for="inputOther" class="col col-form-label">City Name:</label>
+                                    </div>
+                                    <div class="col-5 text-left">
+                                        <input type="text" class="form-control" id="inputOther" placeholder="city name">
+                                    </div>
+                                    <div class="col">
+                                        <input id="add-city" type="submit" value="Add City">
+                                    </div>
+                                </div>
+                            </div>
+                        </form> -->
+
+                    </div>
+                    <div class="col"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="weatherDisplay" class="animated bounceInDown card mt-1 weather">
+            <div class="card-header weather p-2 mt-1 mx-1 text-left">
+                <div class="row">
+                    <div class="col">
+                        <h4>Weather Information</h4>
+                    </div>
+                    <div class="col">
+                        <input id="clearAll" class="btn btn-secondary btn-sm float-right" type="submit" value="Reset">
+                    </div>
+                </div>
+            </div>
+            <div id="weatherView" class="card-body">
+                <div class="newWeather row">
+                    <table class="table table-hover">
+                        <tbody id=weatherWidget>
+                            <h6 class="pl-3 pt-3 text-center" id="selectMessage">Please select at least one location from the list above</h6>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="animated fadeIn location p-2 m-1" style="animation-delay: 1.5s;">
+            <h2>Map</h2>
+            <div id="map">
+            </div>
+        </div>
+
+
+
+        <div class="email p-2 m-1">
+            <h3 id="signup-success" class="text-success"></h3>
+            <div class="email p-2 m-1">
+
+
+            <form>
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <label>Enter Your Email Address for Future Updates:</label>
+                        <input type="email" class="form-control" id="email-input" aria-describedby="email" placeholder="ex: youremail@stayco.com">
+                        <small class="form-text">We'll never share your email with anyone else.</small>
+                    </div>
+                    <div class="col-auto">
+                        <button id="signup-button" type="submit" class="btn btn-danger">Submit</button>
+                    </div>
+
+                </div>
+            </form>
+
+        </div> 
+                
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+<script src="./assets/javascript/app.js"></script>
+
+<!--GoogleMaps API script-->
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBXewlGo5brD8HlCh3P8fdqOErBY57gVto&callback=initMap">
+</script>
+
+<!--Firebase script-->
+<script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+        
+
+</body>
+
+</html>
